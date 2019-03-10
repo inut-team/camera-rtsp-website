@@ -1,1 +1,508 @@
-[]
+[
+    {
+        "id": "c44fd859.f75698",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9b5d0ae8.9bf0b8",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "52a67511.ff6fac",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "e30b7c55.fdc3",
+        "type": "ui_group",
+        "z": "",
+        "name": "Group 1",
+        "tab": "52a67511.ff6fac",
+        "order": 1,
+        "disp": true,
+        "width": "14",
+        "collapse": false
+    },
+    {
+        "id": "56bc7a02.d313e4",
+        "type": "ui_group",
+        "name": "Group 2",
+        "tab": "52a67511.ff6fac",
+        "order": 2,
+        "disp": true,
+        "width": 6
+    },
+    {
+        "id": "2dea566b.7691ea",
+        "type": "inject",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 210,
+        "y": 1400,
+        "wires": [
+            [
+                "8487b473.718638",
+                "7a62467f.8a93f8"
+            ]
+        ]
+    },
+    {
+        "id": "8487b473.718638",
+        "type": "exec",
+        "z": "c44fd859.f75698",
+        "command": "avconv -err_detect aggressive -fflags discardcorrupt -y -re -i \"rtsp://192.168.0.102/user=admin&password=&channel=0&stream=0.sdp\" -an -f image2 -y -rtsp_transport udp -r 1/2 -updatefirst 1 -qscale 0 -acodec none -pix_fmt yuvj420p /home/pi/ramdisk/0.jpg",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "ffmpeg",
+        "x": 380,
+        "y": 1400,
+        "wires": [
+            [
+                "70d2b7f8.2cbfc8"
+            ],
+            [],
+            [
+                "70d2b7f8.2cbfc8",
+                "3c1f65d6.87df4a"
+            ]
+        ]
+    },
+    {
+        "id": "70d2b7f8.2cbfc8",
+        "type": "debug",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "3c1f65d6.87df4a",
+        "type": "delay",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 380,
+        "y": 1500,
+        "wires": [
+            [
+                "8487b473.718638"
+            ]
+        ]
+    },
+    {
+        "id": "7a62467f.8a93f8",
+        "type": "file in",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "filename": "/home/pi/ramdisk/0.jpg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "x": 410,
+        "y": 1580,
+        "wires": [
+            [
+                "dac27669.d56a38",
+                "cfc0adee.40001"
+            ]
+        ]
+    },
+    {
+        "id": "dac27669.d56a38",
+        "type": "delay",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 400,
+        "y": 1640,
+        "wires": [
+            [
+                "7a62467f.8a93f8"
+            ]
+        ]
+    },
+    {
+        "id": "cfc0adee.40001",
+        "type": "base64",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "action": "",
+        "property": "payload",
+        "x": 620,
+        "y": 1580,
+        "wires": [
+            [
+                "2286b411.ab76cc",
+                "dd2584b9.ab3038"
+            ]
+        ]
+    },
+    {
+        "id": "2286b411.ab76cc",
+        "type": "debug",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 790,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "dd2584b9.ab3038",
+        "type": "function",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "func": "msg.payload = \"data:image/jpeg;base64,\" + msg.payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 1580,
+        "wires": [
+            [
+                "9f5be75c.acdf68"
+            ]
+        ]
+    },
+    {
+        "id": "9f5be75c.acdf68",
+        "type": "ui_template",
+        "z": "c44fd859.f75698",
+        "group": "e30b7c55.fdc3",
+        "name": "",
+        "order": 0,
+        "width": "14",
+        "height": "13",
+        "format": "<img src=\"{{msg.payload}}\">",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 900,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e3342e87.4bcdd",
+        "type": "inject",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 230,
+        "y": 1740,
+        "wires": [
+            [
+                "1512ca39.18e726",
+                "a445782c.6ab0d8"
+            ]
+        ]
+    },
+    {
+        "id": "1512ca39.18e726",
+        "type": "exec",
+        "z": "c44fd859.f75698",
+        "command": "avconv -err_detect aggressive -fflags discardcorrupt -y -re -i \"rtsp://192.168.0.108/user=admin&password=&channel=0&stream=0.sdp\" -an -f image2 -y -rtsp_transport udp -r 1/2 -updatefirst 1 -qscale 0 -acodec none -pix_fmt yuvj420p /home/pi/ramdisk/1.jpg",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "oldrc": false,
+        "name": "ffmpeg",
+        "x": 400,
+        "y": 1740,
+        "wires": [
+            [
+                "5d805157.f01da"
+            ],
+            [],
+            [
+                "5d805157.f01da",
+                "efc20b4e.b1a6e8"
+            ]
+        ]
+    },
+    {
+        "id": "5d805157.f01da",
+        "type": "debug",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "efc20b4e.b1a6e8",
+        "type": "delay",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 400,
+        "y": 1840,
+        "wires": [
+            [
+                "1512ca39.18e726"
+            ]
+        ]
+    },
+    {
+        "id": "a445782c.6ab0d8",
+        "type": "file in",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "filename": "/home/pi/ramdisk/1.jpg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "x": 430,
+        "y": 1920,
+        "wires": [
+            [
+                "278b14d8.f0f98c",
+                "a0f6f046.d0c3c"
+            ]
+        ]
+    },
+    {
+        "id": "278b14d8.f0f98c",
+        "type": "delay",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "2",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 420,
+        "y": 1980,
+        "wires": [
+            [
+                "a445782c.6ab0d8"
+            ]
+        ]
+    },
+    {
+        "id": "a0f6f046.d0c3c",
+        "type": "base64",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "action": "",
+        "property": "payload",
+        "x": 640,
+        "y": 1920,
+        "wires": [
+            [
+                "91f6a42d.840f98",
+                "cf4035fc.b1b228"
+            ]
+        ]
+    },
+    {
+        "id": "91f6a42d.840f98",
+        "type": "debug",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 810,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "cf4035fc.b1b228",
+        "type": "function",
+        "z": "c44fd859.f75698",
+        "name": "",
+        "func": "msg.payload = \"data:image/jpeg;base64,\" + msg.payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 1920,
+        "wires": [
+            [
+                "75d02c57.5755a4"
+            ]
+        ]
+    },
+    {
+        "id": "75d02c57.5755a4",
+        "type": "ui_template",
+        "z": "c44fd859.f75698",
+        "group": "56bc7a02.d313e4",
+        "name": "",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "format": "<img src=\"{{msg.payload}}\">",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 920,
+        "y": 1920,
+        "wires": [
+            []
+        ]
+    }
+]
